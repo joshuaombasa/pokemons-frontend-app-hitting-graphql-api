@@ -1,7 +1,10 @@
 import React from "react";
 
-export default function Pokemon() {
+export default function Pokemon({pokemon}) {
     return (
-        <p>This is one Pokemon</p>
+        <>
+        <h1>{pokemon.name}</h1>
+        <img src={pokemon.image} alt="" />
+        </>
     )
 }
