@@ -1,10 +1,16 @@
 import React from "react";
 import { gql, useQuery } from "@apollo/client";
 import { GET_POKEMONS } from "../graphql/get-pokemons";
-
+import Pokemon from "../components/Pokemon";
 export default function PokemonsContainer() {
 
     const { data, loading, error } = useQuery(GET_POKEMONS)
+
+    let pokemonsJsx 
+
+    if (data) {
+        pokemonsJsx = data.pokemons.map(item => <Pokemon  key={item.id} pokemon={item} />)
+    }
 
     if (data) {
         console.log(data.pokemons)
@@ -15,7 +21,7 @@ export default function PokemonsContainer() {
 
     return (
         <>
-            <p>This is the container</p>
+            {data && pokemonsJsx}
         </>
     )
 }
